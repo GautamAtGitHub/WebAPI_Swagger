@@ -15,8 +15,30 @@ OpenAPI is the specification, and Swagger is a set of tools that facilitate the 
 ##### 3. Add the swagger generator to the Services. Then configure the WebApi middleware to use the Swagger and finally activate the Swagger UI which will provide the interactive browser based API explorer which acts as a test client as well.
 
 ```cs
-public void ConfigureServices(IServiceCollection services)
-{
-}
+        public void ConfigureServices(IServiceCollection services)
+        {
+            services.AddMvc();
+            services.AddSwaggerGen(options =>
+            {
+                options.SwaggerDoc("v1", new Info { Title = "Test API", Version = "v1" });
+            });
+        }
 
+        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        {
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+            }
+
+            // Enable middleware to serve generated Swagger as a JSON endpoint.
+            app.UseSwagger();
+            // Add swagger UI
+            app.UseSwaggerUI(options => {
+                options.SwaggerEndpoint("/swagger/v1/swagger.json", "Test API V1");
+            });
+            app.UseMvc();
+        }
+  
 ```
