@@ -42,3 +42,9 @@ OpenAPI is the specification, and Swagger is a set of tools that facilitate the 
         }
   
 ```
+##### 4. Now go to the swagger UI by simply running the application and navigating to http://localhost:5000/swagger
+
+![image](https://user-images.githubusercontent.com/34414643/39530169-0738c478-4e46-11e8-90b8-47d9742de94a.png)
+
+Using this UI you can now navigate as well as test the API from browser.
+
